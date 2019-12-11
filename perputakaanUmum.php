@@ -1,9 +1,7 @@
 <?php
 
-class Perpustakaan
+class PerpustakaanUmum extends Perpustakaan
 {
-    protected $nama_perpustakaan, $lokasi, $listbuku, $listpeminjaman, $jenis;
-
     public function __get($choice)
     {
         switch($choice) 
@@ -13,6 +11,7 @@ class Perpustakaan
             case 'lokasi':
                 return $this->lokasi;
         }
+        $jenis = "Perpustakaan Umum";
     }
 
     public function __set($choice, $value)
@@ -28,13 +27,19 @@ class Perpustakaan
         }
     }
 
-    public function cari_buku($nama_buku)
+    public function peminjamanBuku($nama_buku, $id_user)
     {
-        foreach($listbuku as $buku)
+
+        foreach($daftarbuku as $buku)
         {
             if($buku->nama == $nama_buku)
             {
-                return 1;
+                if($buku->ketersediaan)             # Buku tersedia
+                {
+                    $temp = new Peminjaman($nama_buku, $id_user);
+                    $listPeminjaman.push($temp);
+                    return 1;
+                }
             }
         }
 

@@ -2,14 +2,14 @@
 
 class Kategori
 {
-    private $id_kategori, $nama;
+    private $id_kategori, $nama_kategori;
 
     public function __get($choice)
     {
         switch($choice)
         {
             case 'nama':
-                return $this->nama;
+                return $this->nama_kategori;
         }
     }
 
@@ -18,7 +18,7 @@ class Kategori
         switch($choice)
         {
             case 'nama':
-                $this->nama = $value;
+                $this->nama_kategori = $value;
                 break;
         }
     }

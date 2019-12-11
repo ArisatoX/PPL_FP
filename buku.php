@@ -2,7 +2,7 @@
 
 class Buku
 {
-    private $id_buku, $judul;
+    private $id_buku, $judul, $ketersediaan;
     public $kategori;
 
     public function __get($choice)
@@ -11,9 +11,7 @@ class Buku
         {
             case 'judul':
                 return $this->judul;
-                
         }
-        
     }
 
     public function __set($choice, $value)

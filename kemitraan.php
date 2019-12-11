@@ -1,8 +1,14 @@
 <?php
 
-class Perpustakaan
+class Kemitraan extends Perpustakaan
 {
-    protected $nama_perpustakaan, $lokasi, $listbuku, $listpeminjaman, $jenis;
+    private $nama_mitra;
+
+    public function __constructor($mitra)
+    {
+        $jenis = "Kemitraan";
+        $nama_mitra = $mitra;
+    }
 
     public function __get($choice)
     {
@@ -26,18 +32,5 @@ class Perpustakaan
                 $this->lokasi = $value;
                 break;
         }
-    }
-
-    public function cari_buku($nama_buku)
-    {
-        foreach($listbuku as $buku)
-        {
-            if($buku->nama == $nama_buku)
-            {
-                return 1;
-            }
-        }
-
-        return 0;
     }
 }
