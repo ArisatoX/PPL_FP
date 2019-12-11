@@ -4,12 +4,10 @@ class Anggota
 {
     private $id_user, $nama, $email, $telp, $alamat;
 
-    public function __get($category)
+    public function __get($choice)
     {
-        switch($category) 
+        switch($choice) 
         {
-            case 'id_user':
-                return $this->id_user;
             case 'nama':
                 return $this->nama;
             case 'email':
@@ -21,22 +19,22 @@ class Anggota
         }
     }
 
-    public function __set($category, $value)
+    public function __set($choice, $value)
     {
-        switch($category) 
+        switch($choice) 
         {
-            case 'id_user':
-                $this->id_user = $value;
-            break;
             case 'nama':
                 $this->nama = $value;
+                break;
             case 'email':
                 $this->email = $value;
+                break;
             case 'telp':
                 $this->telp = $value;
+                break;
             case 'alamat':
                 $this->alamat = $value;
+                break;
         }
     }
-
 }
