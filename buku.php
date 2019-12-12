@@ -5,16 +5,25 @@ class Buku
     private $id_buku, $judul, $ketersediaan;
     public $kategori;
 
-    public function __get($choice)
+    public function __construct($judul, $kategori)
+    {
+        $this->judul=$judul;
+        $this->kategori=$kategori;
+        $this->ketersediaan=true;
+    }
+
+    public function get($choice)
     {
         switch($choice)
         {
             case 'judul':
                 return $this->judul;
+            case 'ketersediaan':
+                return $this->ketersediaan;
         }
     }
 
-    public function __set($choice, $value)
+    public function set($choice, $value)
     {
         switch($choice)
         {

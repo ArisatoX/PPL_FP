@@ -2,7 +2,16 @@
 
 class PerpustakaanSekolah extends Perpustakaan
 {
-    public function __get($choice)
+    public function __construct($nama, $lokasi)
+    {
+        $this->nama = $nama;
+        $this->lokasi = $lokasi;
+        $this->listbuku = [];
+        $this->peminjaman = [];
+        $this->jenis = "Perpustakaan Sekolah";
+    }
+
+    public function get($choice)
     {
         switch($choice) 
         {
@@ -10,11 +19,12 @@ class PerpustakaanSekolah extends Perpustakaan
                 return $this->nama;
             case 'lokasi':
                 return $this->lokasi;
+            case 'jenis':
+                return $this->jenis;
         }
-        $jenis = "Perpustakaan Sekolah";
     }
 
-    public function __set($choice, $value)
+    public function set($choice, $value)
     {
         switch($choice) 
         {
@@ -24,25 +34,52 @@ class PerpustakaanSekolah extends Perpustakaan
             case 'lokasi':
                 $this->lokasi = $value;
                 break;
+            case 'buku':
+                array_push($this->listbuku, $value);
+                break;
         }
+
     }
 
     public function peminjamanBuku($nama_buku, $id_user)
     {
+        echo nl2br("Terhubung dengan perpustakaan $this->nama\n");
+        echo nl2br("Mencari ketersediaan buku $nama_buku pada perpustakaan $this->nama\n");
 
-        foreach($daftarbuku as $buku)
+        $tersedia = 0;
+        foreach($this->listbuku as $buku)
         {
-            if($buku->nama == $nama_buku)
+            if($buku->get('judul') == $nama_buku)
             {
-                if($buku->ketersediaan)             # Buku tersedia
+                if($buku->get('ketersediaan'))             # Buku tersedia
                 {
                     $temp = new Peminjaman($nama_buku, $id_user);
-                    $listPeminjaman.push($temp);
-                    return 1;
+                    array_push($listPeminjaman, $temp);
+                    $tersedia = 1;
+                    break;
                 }
             }
         }
 
-        return 0;
+        echo nl2br("Mengirim hasil peminjaman dari perpustakaan $this->nama\n");
+        return $tersedia;
+    }
+
+    public function cari_buku($nama_buku)
+    {
+        echo nl2br("$this->jenis : Terhubung dengan perpustakaan $this->nama\n");
+        // print(newline);
+        echo nl2br("$this->jenis : Mencari buku $nama_buku pada perpustakaan $this->nama\n");
+        $found = 0;
+        foreach($this->listbuku as $buku)
+        {
+            if($buku->get('judul') == $nama_buku)
+            {
+                $found = 1;
+            }
+        }
+
+        echo nl2br("$this->jenis : Mengirim hasil pencarian dari perpustakaan $this->nama\n");
+        return $found;
     }
 }

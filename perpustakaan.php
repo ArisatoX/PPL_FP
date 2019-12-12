@@ -4,6 +4,14 @@ class Perpustakaan
 {
     protected $nama_perpustakaan, $lokasi, $listbuku, $listpeminjaman, $jenis;
 
+    public function __constructor($nama, $lokasi)
+    {
+        $this->nama = $nama;
+        $this->lokasi = $lokasi;
+        $this->listbuku = [];
+        $this->peminjaman = [];
+    }
+
     public function __get($choice)
     {
         switch($choice) 
@@ -12,6 +20,8 @@ class Perpustakaan
                 return $this->nama;
             case 'lokasi':
                 return $this->lokasi;
+            case 'jenis':
+                return $this->jenis;
         }
     }
 
@@ -30,14 +40,26 @@ class Perpustakaan
 
     public function cari_buku($nama_buku)
     {
-        foreach($listbuku as $buku)
+        print("Terhubung dengan perpustakaan " + $this->nama);
+        print("Mencari buku" + $nama_buku + "pada perpustakaan " + $this->nama);
+        $found = 0;
+        // foreach($listbuku as $buku)
+        // {
+        //     if($buku->nama == $nama_buku)
+        //     {
+        //         $found = 1;
+        //     }
+        // }
+
+        for($i=0; $i<length(listbuku); $i++)
         {
             if($buku->nama == $nama_buku)
             {
-                return 1;
+                $found = 1;
             }
         }
 
-        return 0;
+        print("Mengirim hasil pencarian dari perpustakaan " + $this->nama);
+        return $found;
     }
 }
