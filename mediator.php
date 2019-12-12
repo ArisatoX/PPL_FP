@@ -11,20 +11,21 @@ class Mediator
 
     public function send_request_pinjam($nama_buku, $lokasi_buku, $id_user)
     {
+        echo nl2br("\nMediator menerima request peminjaman $nama_buku pada perpustakaan $lokasi_buku\n");
         foreach($this->daftar_perpustakaan as $perpus)
         {
-            if($lokasi_buku == $perpus->nama_perpustakaan)
+            if($lokasi_buku == $perpus->nama)
             {
-                print("Mediator: Menghubungkan pada perpustakaan " + $perpus->get('nama'));
+                echo nl2br("Mediator: Menghubungkan pada perpustakaan $perpus->nama \n");
                 $success = $perpus->peminjamanBuku($nama_buku, $id_user);
-                print("Mediator: Menerima hasil peminjaman dari perpustakaan " + $perpus->get('nama'));
+                echo nl2br("Mediator: Menerima hasil peminjaman dari perpustakaan $perpus->nama\n");
                 if($success)
                 {
-                    print("Peminjaman Sukses");
+                    echo nl2br("Mediator : Peminjaman Sukses\n");
                 }
                 else
                 {
-                    print("Peminjaman Tidak Berhasil dikarena buku yang anda minta tidak tersedia pada perpustakaan ini.");
+                    echo nl2br("Mediator : Peminjaman Tidak Berhasil dikarena buku yang anda minta tidak tersedia pada perpustakaan ini.\n");
                 }
             }
         }

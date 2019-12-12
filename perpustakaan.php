@@ -2,7 +2,7 @@
 
 class Perpustakaan
 {
-    protected $nama_perpustakaan, $lokasi, $listbuku, $listpeminjaman, $jenis;
+    protected $nama, $lokasi, $listbuku, $listpeminjaman, $jenis;
 
     public function __constructor($nama, $lokasi)
     {

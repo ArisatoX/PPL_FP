@@ -43,8 +43,8 @@ class PerpustakaanSekolah extends Perpustakaan
 
     public function peminjamanBuku($nama_buku, $id_user)
     {
-        echo nl2br("Terhubung dengan perpustakaan $this->nama\n");
-        echo nl2br("Mencari ketersediaan buku $nama_buku pada perpustakaan $this->nama\n");
+        echo nl2br("$this->jenis :Terhubung dengan perpustakaan $this->nama\n");
+        echo nl2br("$this->jenis :Mencari ketersediaan buku $nama_buku pada perpustakaan $this->nama\n");
 
         $tersedia = 0;
         foreach($this->listbuku as $buku)
@@ -61,7 +61,7 @@ class PerpustakaanSekolah extends Perpustakaan
             }
         }
 
-        echo nl2br("Mengirim hasil peminjaman dari perpustakaan $this->nama\n");
+        echo nl2br("$this->jenis :Mengirim hasil peminjaman dari perpustakaan $this->nama\n");
         return $tersedia;
     }
 

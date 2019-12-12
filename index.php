@@ -36,4 +36,5 @@
 
     $mediator = new Mediator($list_perpustakaan);
     $mediator->send_request_cari("Belajar HTML");
+    $mediator->send_request_pinjam("Belajar HTML", "SMP N 2", 0);
     // print($perpustakaan3->cari_buku("a"));
