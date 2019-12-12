@@ -2,8 +2,7 @@
 
 class Buku
 {
-    private $id_buku, $judul, $ketersediaan;
-    public $kategori;
+    private $id_buku, $judul, $ketersediaan, $kategori;
 
     public function __construct($judul, $kategori)
     {
@@ -29,6 +28,9 @@ class Buku
         {
             case 'judul':
                 $this->judul = $value;
+            break;
+            case 'ketersediaan':
+                $this->ketersediaan = $value;
             break;
         }
     }
